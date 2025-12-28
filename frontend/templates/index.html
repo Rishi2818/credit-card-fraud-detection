@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Fraud Detection System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-shield-alt"></i> Credit Card Fraud Detection</h1>
+                <p>Advanced Machine Learning Based Fraud Detection System</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Section: Input Form -->
+            <section class="input-section">
+                <div class="section-title">
+                    <h2><i class="fas fa-edit"></i> Transaction Details</h2>
+                </div>
+                
+                <div class="input-mode-toggle">
+                    <button class="mode-btn active" data-mode="manual">Manual Entry</button>
+                    <button class="mode-btn" data-mode="csv">Bulk Upload</button>
+                    <button class="mode-btn" data-mode="random">Random Sample</button>
+                </div>
+
+                <!-- Manual Entry Form -->
+                <div id="manual-mode" class="input-mode active">
+                    <div class="features-grid">
+                        <div id="features-container"></div>
+                    </div>
+                    <button class="btn-primary" id="predict-btn">
+                        <i class="fas fa-brain"></i> Analyze Transaction
+                    </button>
+                </div>
+
+                <!-- CSV Upload Mode -->
+                <div id="csv-mode" class="input-mode">
+                    <div class="upload-area" id="upload-area">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag and drop CSV file here or click to select</p>
+                        <input type="file" id="csv-input" accept=".csv" style="display:none">
+                    </div>
+                    <button class="btn-primary" id="upload-btn" style="display:none;">
+                        <i class="fas fa-upload"></i> Upload & Analyze
+                    </button>
+                </div>
+
+                <!-- Random Sample Mode -->
+                <div id="random-mode" class="input-mode">
+                    <p class="mode-description">Generate random transaction features for testing</p>
+                    <button class="btn-primary" id="random-btn">
+                        <i class="fas fa-dice"></i> Generate Random Features
+                    </button>
+                </div>
+            </section>
+
+            <!-- Right Section: Results -->
+            <section class="result-section">
+                <div class="section-title">
+                    <h2><i class="fas fa-chart-pie"></i> Prediction Results</h2>
+                </div>
+                
+                <div id="result-container" class="result-placeholder">
+                    <div class="empty-state">
+                        <i class="fas fa-inbox"></i>
+                        <p>Results will appear here after analysis</p>
+                    </div>
+                </div>
+
+                <div id="loading" class="loading" style="display:none;">
+                    <div class="spinner"></div>
+                    <p>Analyzing transaction...</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Statistics Section -->
+        <section class="stats-section">
+            <div class="stat-card">
+                <i class="fas fa-check-circle"></i>
+                <h3>Legitimate Transactions</h3>
+                <p id="legitimate-count">0</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Fraudulent Detected</h3>
+                <p id="fraud-count">0</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-chart-bar"></i>
+                <h3>Total Analyzed</h3>
+                <p id="total-count">0</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-percentage"></i>
+                <h3>Fraud Rate</h3>
+                <p id="fraud-rate">0%</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2025 Credit Card Fraud Detection System | Powered by Machine Learning</p>
+        </footer>
+    </div>
+
+    <!-- Result Modal -->
+    <div id="result-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
